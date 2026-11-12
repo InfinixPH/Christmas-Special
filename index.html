@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Infinix Christmas Special</title>
+<style>
+:root{--bg:#fbf5ee;--card:#fff;--ink:#2a1a1d;--red:#8a1630;--red2:#4a0a16;--gold:#b8923a;--line:#e7c9cf;--muted:#6d5a5e;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1a0a0e;--card:#2a1218;--ink:#f6e9e4;--red:#e0566f;--red2:#ff9aae;--gold:#e3bd62;--line:#5a2a35;--muted:#c3a9ae}}
+:root[data-theme="dark"]{--bg:#1a0a0e;--card:#2a1218;--ink:#f6e9e4;--red:#e0566f;--red2:#ff9aae;--gold:#e3bd62;--line:#5a2a35;--muted:#c3a9ae}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI",system-ui,-apple-system,Helvetica,Arial,sans-serif;line-height:1.5}
+.hero{text-align:center;padding:48px 20px 36px;background:radial-gradient(circle at 50% 0,rgba(138,22,48,.12),transparent 60%)}
+.brand{font-size:2.2rem;font-weight:700;letter-spacing:.02em}
+h1{margin:6px 0 4px;font-family:Impact,"Arial Narrow Bold",sans-serif;font-weight:900;font-size:clamp(3rem,13vw,7rem);line-height:.95;letter-spacing:.01em;background:linear-gradient(var(--red),var(--red2));-webkit-background-clip:text;background-clip:text;color:transparent;text-transform:uppercase}
+.tag{font-size:1.15rem;margin:10px 0 22px}
+.period{display:inline-block;border:1px solid var(--gold);color:var(--gold);padding:8px 18px;border-radius:99px;font-weight:600}
+.count{display:flex;justify-content:center;gap:10px;margin:24px 0 0}
+.count div{background:var(--card);border:1px solid var(--line);border-radius:12px;min-width:68px;padding:10px 6px}
+.count b{display:block;font-size:1.6rem;color:var(--red)}
+.count span{font-size:.72rem;text-transform:uppercase;color:var(--muted);letter-spacing:.08em}
+#status{margin-top:12px;color:var(--muted);font-size:.95rem}
+main{max-width:1080px;margin:0 auto;padding:10px 16px 40px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.card{background:var(--card);border:2px solid var(--line);border-radius:22px;padding:20px;display:flex;gap:16px;align-items:center;box-shadow:0 6px 18px rgba(138,22,48,.08);transition:transform .2s}
+.card:hover{transform:translateY(-4px)}
+.card.wide{grid-column:span 2}
+@media(max-width:620px){.card.wide{grid-column:auto}}
+.phone{flex:0 0 84px;height:150px;border-radius:16px;border:3px solid #222;background:var(--c);position:relative;box-shadow:inset 0 0 0 4px rgba(0,0,0,.35)}
+.phone::before{content:"";position:absolute;top:8px;left:8px;width:22px;height:22px;border-radius:7px;background:#111;box-shadow:0 0 0 2px rgba(255,255,255,.25)}
+.info{flex:1;min-width:0}
+.name{font-weight:800;font-size:1.3rem;letter-spacing:.02em}
+.opt{display:flex;justify-content:space-between;align-items:baseline;gap:8px;border-bottom:1px dashed var(--line);padding:6px 0}
+.opt small{border:1px solid var(--gold);color:var(--gold);border-radius:99px;padding:1px 9px;font-size:.72rem;white-space:nowrap}
+.opt b{font-size:1.25rem;color:var(--gold)}
+.free{margin-top:12px;border:2px solid var(--gold);border-radius:10px;overflow:hidden;font-size:.85rem}
+.free span{display:block;padding:5px 10px;color:var(--muted)}
+.free strong{display:block;background:var(--gold);color:#2a1a1d;padding:4px 10px;letter-spacing:.04em}
+.badge{margin:16px auto 0;max-width:460px;background:linear-gradient(var(--red),var(--red2));color:#fff;padding:10px 18px;border-radius:14px;font-weight:700}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:18px 0 8px;text-align:left}
+.steps div{border:1px dashed var(--gold);border-radius:14px;padding:12px 14px}
+.steps b{display:block;color:var(--gold);font-size:1.4rem}
+.prizes{margin-top:26px;text-align:center;background:var(--card);border:2px solid var(--line);border-radius:22px;padding:30px 18px}
+.prizes h2{margin:0 0 6px;letter-spacing:.04em}
+.prizes p{margin:4px 0;color:var(--gold);font-weight:600}
+.prizes small{color:var(--muted)}
+footer{text-align:center;padding:24px 16px 40px;color:var(--muted);font-size:.85rem}
+canvas{position:fixed;inset:0;pointer-events:none;z-index:5}
+</style>
+</head>
+<body>
+<canvas id="snow"></canvas>
+<header class="hero">
+  <div class="brand">Infinix</div>
+  <h1>Christmas<br>Special</h1>
+  <p class="tag">Share the holiday spirit with Infinix</p>
+  <span class="period">Promo Period: December 21, 2026 to January 3, 2027</span>
+  <div class="badge">🎟️ Buy any participating Infinix phone and get a raffle entry!</div>
+  <div class="count" id="count" aria-live="polite">
+    <div><b id="d">0</b><span>Days</span></div><div><b id="h">0</b><span>Hours</span></div><div><b id="m">0</b><span>Mins</span></div><div><b id="s">0</b><span>Secs</span></div>
+  </div>
+  <div id="status"></div>
+</header>
+<main>
+  <div class="grid">
+    <article class="card wide">
+      <div class="phone" style="--c:linear-gradient(160deg,#cdb8f0,#8a6bc4)"></div>
+      <div class="info">
+        <div class="name">HOT 70 Pro 5G+</div>
+        <div class="opt"><small>6GB + 256GB</small><b>₱17,999</b></div>
+        <div class="free"><span>Freebie:</span><strong>XPOCKET FAN Series</strong></div>
+      </div>
+    </article>
+    <article class="card wide">
+      <div class="phone" style="--c:linear-gradient(160deg,#1c2a24,#0a0f0d 60%,#12c27a)"></div>
+      <div class="info">
+        <div class="name">GT 50 Pro</div>
+        <div class="opt"><small>24GB + 256GB</small><b>₱25,999</b></div>
+        <div class="opt"><small>24GB + 512GB</small><b>₱29,999</b></div>
+        <div class="free"><span>Freebie:</span><strong>GTBUDS 5</strong></div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="phone" style="--c:linear-gradient(160deg,#f2a15f,#c8662b)"></div>
+      <div class="info">
+        <div class="name">NOTE 60 Pro</div>
+        <div class="opt"><small>16GB + 256GB</small><b>₱17,999</b></div>
+        <div class="opt"><small>24GB + 256GB</small><b>₱19,999</b></div>
+        <div class="free"><span>Freebie:</span><strong>MAGPOWER 5</strong></div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="phone" style="--c:linear-gradient(160deg,#2a2a2e,#0c0c0e 60%,#b8481f)"></div>
+      <div class="info">
+        <div class="name">NOTE 60 Ultra</div>
+        <div class="opt"><small>24GB + 512GB</small><b>₱32,999</b></div>
+        <div class="free"><span>Freebie:</span><strong>GTBUDS 5</strong></div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="phone" style="--c:linear-gradient(160deg,#6f8f7c,#2f4a3b 70%,#14a68a)"></div>
+      <div class="info">
+        <div class="name">NOTE Edge 5G</div>
+        <div class="opt"><small>16GB + 256GB</small><b>₱15,999</b></div>
+        <div class="free"><span>Freebie:</span><strong>GTBUDS 5</strong></div>
+      </div>
+    </article>
+  </div>
+  <section class="prizes">
+    <h2>WIN EXCITING PRIZES</h2>
+    <p>Promo Period: December 21, 2026 to January 3, 2027</p>
+    <div class="steps">
+      <div><b>1</b>Buy any participating Infinix phone during the promo period.</div>
+      <div><b>2</b>Receive your raffle entry with your purchase.</div>
+      <div><b>3</b>Wait for the draw and win exciting prizes!</div>
+    </div>
+    <small>Raffle mechanics and draw schedule will be announced by Infinix Philippines.</small>
+  </section>
+</main>
+<footer>© 2026 Infinix Philippines. Promo mechanics and freebies are subject to availability.</footer>
+<script>
+(function(){
+var start=new Date("2026-12-21T00:00:00+08:00"),end=new Date("2027-01-04T00:00:00+08:00");
+function $(i){return document.getElementById(i)}
+function tick(){
+  var n=new Date(),t,msg;
+  if(n<start){t=start-n;msg="Promo starts December 21"}
+  else if(n<end){t=end-n;msg="Promo is live! Ends January 3, 2027"}
+  else{t=0;msg="This promo has ended. Thank you!"}
+  var s=Math.floor(t/1000);
+  $("d").textContent=Math.floor(s/86400);$("h").textContent=Math.floor(s%86400/3600);
+  $("m").textContent=Math.floor(s%3600/60);$("s").textContent=s%60;$("status").textContent=msg;
+}
+tick();setInterval(tick,1000);
+var c=$("snow"),x=c.getContext("2d"),f=[],W,H;
+function rs(){W=c.width=innerWidth;H=c.height=innerHeight}
+rs();addEventListener("resize",rs);
+for(var i=0;i<50;i++)f.push({x:Math.random()*2000,y:Math.random()*1200,r:Math.random()*2.5+1,v:Math.random()+.4});
+if(!matchMedia("(prefers-reduced-motion: reduce)").matches)(function a(){
+  x.clearRect(0,0,W,H);x.fillStyle="rgba(210,170,90,.55)";
+  f.forEach(function(p){p.y+=p.v;p.x+=Math.sin(p.y/40)*.4;if(p.y>H){p.y=-5;p.x=Math.random()*W}
+    x.beginPath();x.arc(p.x%W,p.y,p.r,0,6.3);x.fill()});
+  requestAnimationFrame(a)})();
+})();
+</script>
+</body>
+</html>
